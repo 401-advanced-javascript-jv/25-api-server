@@ -19,6 +19,8 @@ const app = express();
 // App Level MW
 app.use(cors());
 app.use(morgan('dev'));
+
+// Use the QClient to log activity
 app.use((request, response, next) => {
   let method = request.method.toLowerCase();
   let url = request.url;
