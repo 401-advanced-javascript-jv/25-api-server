@@ -1,7 +1,7 @@
 {
-  "name": "19-api",
+  "name": "25-api",
   "version": "1.0.0",
-  "description": "## Message Queue Server",
+  "description": "## API Server",
   "main": "index.js",
   "dependencies": {
     "@nmq/q": "^1.0.3",
