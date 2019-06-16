@@ -11,4 +11,4 @@ module.exports = (request, response, next) => {
   let url = request.url;
   QClient.publish('database', method, {method, url});
   next();
-}
+};

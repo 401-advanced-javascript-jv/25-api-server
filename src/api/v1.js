@@ -13,7 +13,7 @@ const express = require('express');
 const modelFinder = require(`${cwd}/src/middleware/model-finder.js`);
 const router = express.Router();
 
-const swagger = require('swagger-ui-express');
+//const swagger = require('swagger-ui-express');
 //const swaggerDocs = require(`${cwd}/docs/api/v1/swagger/swagger.json`);
 
 const handleGetAll = require('./middleware/getAll.js');
