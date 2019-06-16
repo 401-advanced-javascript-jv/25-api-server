@@ -8,8 +8,8 @@ const morgan = require('morgan');
 // Esoteric Resources
 const errorHandler = require( './middleware/500.js');
 const notFound = require( './middleware/404.js' );
+const qClient = require('./middleware/qclient.js');
 const apiRoutes = require('./api/v1.js');
-const qClient = require('./api/qclient.js');
 
 // Prepare the express app
 const app = express();
@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api/v1', apiRoutes);
 
 // Server documentation route
-app.use('/docs', express.static('/docs'));
+app.use('/docs', express.static('docs'));
 
 // Catchalls
 app.use(notFound);
