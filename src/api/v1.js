@@ -13,6 +13,9 @@ const express = require('express');
 const modelFinder = require(`${cwd}/src/middleware/model-finder.js`);
 const router = express.Router();
 
+const swagger = require('swagger-ui-express');
+//const swaggerDocs = require(`${cwd}/docs/api/v1/swagger/swagger.json`);
+
 const handleGetAll = require('./middleware/getAll.js');
 const handleGetOne = require('./middleware/getOne.js');
 const handlePost = require('./middleware/post.js');
@@ -32,6 +35,6 @@ router.put('/:model/:id', handlePut);
 router.patch('/:model/:id', handlePatch);
 router.delete('/:model/:id', handleDelete);
 
-router.use('/doc', express.static(cwd + '/docs'));
+//router.use('/docs', swagger.server, swagger.setup(swaggerDocs));
 
 module.exports = router;

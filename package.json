@@ -15,7 +15,8 @@
     "mongoose": "^5.5.13",
     "mongoose-schema-jsonschema": "^1.2.1",
     "morgan": "^1.9.1",
-    "superagent": "^5.0.6"
+    "superagent": "^5.0.6",
+    "swagger-ui-express": "^4.0.6"
   },
   "prettier": {
     "singleQuote": true,
@@ -39,13 +40,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/401-advanced-javascript-jv/19-api.git"
+    "url": "git+https://github.com/401-advanced-javascript-jv/25-api.git"
   },
   "keywords": [],
   "author": "Jesse Van Volkinburg <vanvoljg@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/401-advanced-javascript-jv/19-api/issues"
+    "url": "https://github.com/401-advanced-javascript-jv/25-api/issues"
   },
-  "homepage": "https://github.com/401-advanced-javascript-jv/19-api#readme"
+  "homepage": "https://github.com/401-advanced-javascript-jv/25-api#readme"
 }

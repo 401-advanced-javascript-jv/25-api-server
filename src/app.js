@@ -9,9 +9,7 @@ const morgan = require('morgan');
 const errorHandler = require( './middleware/500.js');
 const notFound = require( './middleware/404.js' );
 const apiRoutes = require('./api/v1.js');
-
-// Client to send log messages to message server
-const QClient = require('@nmq/q/client');
+const qClient = require('./api/qclient.js');
 
 // Prepare the express app
 const app = express();
@@ -21,18 +19,16 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // Use the QClient to log activity
-app.use((request, response, next) => {
-  let method = request.method.toLowerCase();
-  let url = request.url;
-  QClient.publish('database', method, {method, url});
-  next();
-});
+app.use(qClient);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 // Routes
 app.use('/api/v1', apiRoutes);
+
+// Server documentation route
+app.use('/docs', express.static('/docs'));
 
 // Catchalls
 app.use(notFound);
