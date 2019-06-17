@@ -4,6 +4,7 @@
  * @module QClient Logger
  * Sends database events to the QClient logger
  */
+require('dotenv').config();
 const QClient = require('@nmq/q/client');
 
 module.exports = (request, response, next) => {

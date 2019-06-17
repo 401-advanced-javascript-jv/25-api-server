@@ -26,7 +26,9 @@
 ### Setup
 #### `.env` (environment variable) requirements
 - `PORT` - port to run backend server on
-- `MONGODB_URI` MongoDB URI
+- `MONGODB_URI` - MongoDB URI
+- `Q_SERVER` - URL to the running Q Server - use for logging
+  - Example: `Q_SERVER=http://localhost:3333`
 
 #### Running the app
 * `npm start`
