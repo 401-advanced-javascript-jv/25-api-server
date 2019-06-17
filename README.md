@@ -9,6 +9,10 @@
 * [travis](https://travis-ci.com/401-advanced-javascript-jv/25-api)
 * [backend API server](https://lab25-api.herokuapp.com/)
 
+### Documentation
+- [Swagger API Docs](http://lab25-api.herokuapp.com/api/v1/docs/)
+- [Server Documentation](http://lab25-api.herokuapp.com/docs/)
+
 ### Routes
 - `/teams`, `/players`, `/categories`
   - `GET` - Get all items
