@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * MongoDB Model. Provides CRUD functionality via get([_id]), post(record), put(_id, record), and delete(_id)
- * @module src/models/mongo-model
+ * @module MongoDB Model
+ * Provides CRUD functionality via get([_id]), post(record), put(_id, record), and delete(_id)
  */
 class Model {
   constructor(schema) {

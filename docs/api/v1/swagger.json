@@ -1,0 +1,733 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "Lab25 API Server",
+    "url" : "http://lab25-api.herokuapp.com/api/v1"
+  } ],
+  "info" : {
+    "description" : "Lab 25 API Server",
+    "version" : "0.0.1",
+    "title" : "Lab 25 API Server",
+    "contact" : {
+      "email" : "vanvoljg@gmail.com"
+    },
+    "license" : {
+      "name" : "MIT"
+    }
+  },
+  "tags" : [ {
+    "name" : "categories"
+  }, {
+    "name" : "players"
+  }, {
+    "name" : "teams"
+  } ],
+  "paths" : {
+    "/categories" : {
+      "get" : {
+        "tags" : [ "categories" ],
+        "summary" : "Get all categories",
+        "operationId" : "getCategories",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "categories" ],
+        "summary" : "Add a new category to the database",
+        "operationId" : "addCategory",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "name" ],
+                "properties" : {
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}" : {
+      "get" : {
+        "tags" : [ "categories" ],
+        "summary" : "Find category by ID",
+        "description" : "Returns a single category",
+        "operationId" : "getCategoryById",
+        "parameters" : [ {
+          "name" : "categoryId",
+          "in" : "path",
+          "description" : "ID of category to return",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "categories" ],
+        "summary" : "Updates a category in the database with form data",
+        "operationId" : "updateCategory",
+        "parameters" : [ {
+          "name" : "categoryId",
+          "in" : "path",
+          "description" : "ID of category that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Category"
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "categories" ],
+        "summary" : "Updates a category in the database with form data",
+        "operationId" : "updateCategoryWithForm",
+        "parameters" : [ {
+          "name" : "categoryId",
+          "in" : "path",
+          "description" : "ID of category that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "description" : "Updated name of the category",
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "categories" ],
+        "summary" : "Deletes a category",
+        "operationId" : "deleteCategory",
+        "parameters" : [ {
+          "name" : "categoryId",
+          "in" : "path",
+          "description" : "ID of category to be deleted",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/players" : {
+      "get" : {
+        "tags" : [ "players" ],
+        "summary" : "Get all players",
+        "operationId" : "getPlayers",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Player"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "players" ],
+        "summary" : "Add a new player to the database",
+        "operationId" : "addPlayer",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "name", "position", "throws", "bats", "team" ],
+                "properties" : {
+                  "name" : {
+                    "description" : "player name",
+                    "type" : "string"
+                  },
+                  "position" : {
+                    "description" : "player position, one of: [P, C, 1B, 2B, 3B, SS, LF, RF, CF]",
+                    "type" : "string"
+                  },
+                  "throws" : {
+                    "description" : "one of [L, R]",
+                    "type" : "string"
+                  },
+                  "bats" : {
+                    "description" : "one of [L, R]",
+                    "type" : "string"
+                  },
+                  "team" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/players/{playerId}" : {
+      "get" : {
+        "tags" : [ "players" ],
+        "summary" : "Find player by ID",
+        "description" : "Returns a single player",
+        "operationId" : "getPlayerById",
+        "parameters" : [ {
+          "name" : "playerId",
+          "in" : "path",
+          "description" : "ID of player to return",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "players" ],
+        "summary" : "Updates a player in the database with form data",
+        "operationId" : "updatePlayer",
+        "parameters" : [ {
+          "name" : "playerId",
+          "in" : "path",
+          "description" : "ID of player that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Player"
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "players" ],
+        "summary" : "Updates a player in the database with form data",
+        "operationId" : "updatePlayerWithForm",
+        "parameters" : [ {
+          "name" : "playerId",
+          "in" : "path",
+          "description" : "ID of player that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "_id" : {
+                    "description" : "player ID",
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "description" : "player name",
+                    "type" : "string"
+                  },
+                  "position" : {
+                    "description" : "player position, one of: [P, C, 1B, 2B, 3B, SS, LF, RF, CF]",
+                    "type" : "string"
+                  },
+                  "throws" : {
+                    "description" : "one of [L, R]",
+                    "type" : "string"
+                  },
+                  "bats" : {
+                    "description" : "one of [L, R]",
+                    "type" : "string"
+                  },
+                  "team" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "players" ],
+        "summary" : "Deletes a player",
+        "operationId" : "deletePlayer",
+        "parameters" : [ {
+          "name" : "playerId",
+          "in" : "path",
+          "description" : "ID of player to be deleted",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams" : {
+      "get" : {
+        "tags" : [ "teams" ],
+        "summary" : "Get all teams",
+        "operationId" : "getTeams",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Team"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "teams" ],
+        "summary" : "Add a new team to the database",
+        "operationId" : "addTeam",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/requestTeam"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "name" ],
+                "properties" : {
+                  "name" : {
+                    "type" : "string",
+                    "description" : "Name of the new team"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{teamId}" : {
+      "get" : {
+        "tags" : [ "teams" ],
+        "summary" : "Find team by ID",
+        "description" : "Returns a single team",
+        "operationId" : "getTeamById",
+        "parameters" : [ {
+          "name" : "teamId",
+          "in" : "path",
+          "description" : "ID of team to return",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Team"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "teams" ],
+        "summary" : "Updates a team in the database with form data",
+        "operationId" : "updateTeam",
+        "parameters" : [ {
+          "name" : "teamId",
+          "in" : "path",
+          "description" : "ID of team that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/requestTeam"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Team"
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "teams" ],
+        "summary" : "Updates a team in the database with form data",
+        "operationId" : "updateTeamWithForm",
+        "parameters" : [ {
+          "name" : "teamId",
+          "in" : "path",
+          "description" : "ID of team that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/requestTeam"
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "description" : "Updated name of the team",
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "teams" ],
+        "summary" : "Deletes a team",
+        "operationId" : "deleteTeam",
+        "parameters" : [ {
+          "name" : "teamId",
+          "in" : "path",
+          "description" : "ID of team to be deleted",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/requestTeam"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Category" : {
+        "type" : "object",
+        "required" : [ "_id", "name" ],
+        "properties" : {
+          "_id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "requestTeam" : {
+        "type" : "object",
+        "required" : [ "_id", "name" ],
+        "properties" : {
+          "_id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Team" : {
+        "type" : "object",
+        "required" : [ "_id", "name" ],
+        "properties" : {
+          "_id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "players" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Player"
+            }
+          }
+        }
+      },
+      "Player" : {
+        "type" : "object",
+        "required" : [ "_id", "name", "position", "throws", "bats", "team" ],
+        "properties" : {
+          "_id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "position" : {
+            "type" : "string",
+            "enum" : [ "P", "C", "1B", "2B", "3B", "SS", "LF", "RF", "CF" ]
+          },
+          "throws" : {
+            "type" : "string",
+            "enum" : [ "R", "L" ]
+          },
+          "bats" : {
+            "type" : "string",
+            "enum" : [ "R", "L" ]
+          },
+          "team" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "requestBodies" : {
+      "Category" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Category"
+            }
+          }
+        },
+        "required" : true
+      },
+      "Player" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Player"
+            }
+          }
+        },
+        "required" : true
+      },
+      "Team" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Team"
+            }
+          }
+        },
+        "required" : true
+      },
+      "requestTeam" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/requestTeam"
+            }
+          }
+        },
+        "required" : true
+      }
+    }
+  }
+}
